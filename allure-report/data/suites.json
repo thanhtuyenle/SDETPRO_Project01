@@ -1,0 +1,99 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "Regression",
+    "children" : [ {
+      "name" : "Computer Order flows",
+      "children" : [ {
+        "name" : "tests.order.BuildStandardComputerTest",
+        "children" : [ {
+          "name" : "Buying a standard computer",
+          "uid" : "bf6512ce26865995",
+          "parentUid" : "3d05a4a82773baf65ba8c511e8a3f01b",
+          "status" : "failed",
+          "time" : {
+            "start" : 1634166742701,
+            "stop" : 1634166754392,
+            "duration" : 11691
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "CheapComputer{processorType='INTEL_22_GHZ', ram='RAM_8GB', hdd='HDD_400GB', os='null', software='null'}" ]
+        }, {
+          "name" : "Buying a standard computer",
+          "uid" : "48a7ea511180e863",
+          "parentUid" : "3d05a4a82773baf65ba8c511e8a3f01b",
+          "status" : "failed",
+          "time" : {
+            "start" : 1634166755006,
+            "stop" : 1634166757075,
+            "duration" : 2069
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "CheapComputer{processorType='INTEL_25_GHZ', ram='RAM_4GB', hdd='HDD_400GB', os='null', software='null'}" ]
+        }, {
+          "name" : "Buying a standard computer",
+          "uid" : "c5cae7321062dbf4",
+          "parentUid" : "3d05a4a82773baf65ba8c511e8a3f01b",
+          "status" : "failed",
+          "time" : {
+            "start" : 1634166757485,
+            "stop" : 1634166759891,
+            "duration" : 2406
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "CheapComputer{processorType='INTEL_22_GHZ', ram='RAM_2GB', hdd='HDD_400GB', os='null', software='null'}" ]
+        } ],
+        "uid" : "3d05a4a82773baf65ba8c511e8a3f01b"
+      }, {
+        "name" : "tests.order.BuildCheapComputerTest",
+        "children" : [ {
+          "name" : "Buying a cheap computer",
+          "uid" : "758834c8f5e1c455",
+          "parentUid" : "52431fa16ec6443c1b348213fa6c6ed5",
+          "status" : "passed",
+          "time" : {
+            "start" : 1634166742701,
+            "stop" : 1634166754186,
+            "duration" : 11485
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "CheapComputer{processorType='PROCESSOR_FAST', ram='RAM_8GB', hdd='HDD_400GB', os='null', software='null'}" ]
+        }, {
+          "name" : "Buying a cheap computer",
+          "uid" : "9a1dbbdb45b00329",
+          "parentUid" : "52431fa16ec6443c1b348213fa6c6ed5",
+          "status" : "passed",
+          "time" : {
+            "start" : 1634166754519,
+            "stop" : 1634166756354,
+            "duration" : 1835
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "CheapComputer{processorType='PROCESSOR_FAST', ram='RAM_4GB', hdd='HDD_400GB', os='null', software='null'}" ]
+        }, {
+          "name" : "Buying a cheap computer",
+          "uid" : "77c2f7b99ad29574",
+          "parentUid" : "52431fa16ec6443c1b348213fa6c6ed5",
+          "status" : "passed",
+          "time" : {
+            "start" : 1634166756373,
+            "stop" : 1634166758261,
+            "duration" : 1888
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "CheapComputer{processorType='PROCESSOR_FAST', ram='RAM_2GB', hdd='HDD_400GB', os='null', software='null'}" ]
+        } ],
+        "uid" : "52431fa16ec6443c1b348213fa6c6ed5"
+      } ],
+      "uid" : "dd3cb377655419e4307eb196d93ebb4a"
+    } ],
+    "uid" : "5ba398ba8a4e16d50ebb84d8f641e8da"
+  } ]
+}

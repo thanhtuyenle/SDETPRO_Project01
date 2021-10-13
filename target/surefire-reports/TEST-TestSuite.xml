@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="16.71" tests="6" errors="0" skipped="0" failures="3">
+  <properties>
+    <property name="gopherProxySet" value="false"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="surefire.suiteXmlFiles" value="src/test/resources/test-suites/Regression.xml"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="webdriver.chrome.driver" value="/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/src/test/resources/drivers/chromedriver"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/target/test-classes:/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/target/classes:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-java/3.141.59/selenium-java-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-api/3.141.59/selenium-api-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-chrome-driver/3.141.59/selenium-chrome-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-edge-driver/3.141.59/selenium-edge-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-firefox-driver/3.141.59/selenium-firefox-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-ie-driver/3.141.59/selenium-ie-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-opera-driver/3.141.59/selenium-opera-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-remote-driver/3.141.59/selenium-remote-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-safari-driver/3.141.59/selenium-safari-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-support/3.141.59/selenium-support-3.141.59.jar:/Users/tuyentle/.m2/repository/net/bytebuddy/byte-buddy/1.8.15/byte-buddy-1.8.15.jar:/Users/tuyentle/.m2/repository/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar:/Users/tuyentle/.m2/repository/com/google/guava/guava/25.0-jre/guava-25.0-jre.jar:/Users/tuyentle/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/Users/tuyentle/.m2/repository/org/checkerframework/checker-compat-qual/2.0.0/checker-compat-qual-2.0.0.jar:/Users/tuyentle/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/tuyentle/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/tuyentle/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/tuyentle/.m2/repository/com/squareup/okhttp3/okhttp/3.11.0/okhttp-3.11.0.jar:/Users/tuyentle/.m2/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar:/Users/tuyentle/.m2/repository/org/testng/testng/7.4.0/testng-7.4.0.jar:/Users/tuyentle/.m2/repository/com/beust/jcommander/1.78/jcommander-1.78.jar:/Users/tuyentle/.m2/repository/org/webjars/jquery/3.5.1/jquery-3.5.1.jar:/Users/tuyentle/.m2/repository/com/google/code/gson/gson/2.8.8/gson-2.8.8.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-testng/2.13.9/allure-testng-2.13.9.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-java-commons/2.13.9/allure-java-commons-2.13.9.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-model/2.13.9/allure-model-2.13.9.jar:/Users/tuyentle/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/Users/tuyentle/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.12.2/jackson-databind-2.12.2.jar:/Users/tuyentle/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.12.2/jackson-annotations-2.12.2.jar:/Users/tuyentle/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.12.2/jackson-core-2.12.2.jar:/Users/tuyentle/.m2/repository/org/apache/tika/tika-core/1.25/tika-core-1.25.jar:/Users/tuyentle/.m2/repository/org/jooq/joor-java-8/0.9.13/joor-java-8-0.9.13.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-test-filter/2.13.9/allure-test-filter-2.13.9.jar:/Users/tuyentle/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Chicago"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib"/>
+    <property name="sun.java.command" value="/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/target/surefire/surefirebooter2608471354130879580.jar /Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/target/surefire 2021-10-13T18-43-45_886-jvmRun1 surefire6312272741613048505tmp surefire_04310662586995394923tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="surefire.test.class.path" value="/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/target/test-classes:/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/target/classes:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-java/3.141.59/selenium-java-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-api/3.141.59/selenium-api-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-chrome-driver/3.141.59/selenium-chrome-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-edge-driver/3.141.59/selenium-edge-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-firefox-driver/3.141.59/selenium-firefox-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-ie-driver/3.141.59/selenium-ie-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-opera-driver/3.141.59/selenium-opera-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-remote-driver/3.141.59/selenium-remote-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-safari-driver/3.141.59/selenium-safari-driver-3.141.59.jar:/Users/tuyentle/.m2/repository/org/seleniumhq/selenium/selenium-support/3.141.59/selenium-support-3.141.59.jar:/Users/tuyentle/.m2/repository/net/bytebuddy/byte-buddy/1.8.15/byte-buddy-1.8.15.jar:/Users/tuyentle/.m2/repository/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar:/Users/tuyentle/.m2/repository/com/google/guava/guava/25.0-jre/guava-25.0-jre.jar:/Users/tuyentle/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/Users/tuyentle/.m2/repository/org/checkerframework/checker-compat-qual/2.0.0/checker-compat-qual-2.0.0.jar:/Users/tuyentle/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/tuyentle/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/tuyentle/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/tuyentle/.m2/repository/com/squareup/okhttp3/okhttp/3.11.0/okhttp-3.11.0.jar:/Users/tuyentle/.m2/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar:/Users/tuyentle/.m2/repository/org/testng/testng/7.4.0/testng-7.4.0.jar:/Users/tuyentle/.m2/repository/com/beust/jcommander/1.78/jcommander-1.78.jar:/Users/tuyentle/.m2/repository/org/webjars/jquery/3.5.1/jquery-3.5.1.jar:/Users/tuyentle/.m2/repository/com/google/code/gson/gson/2.8.8/gson-2.8.8.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-testng/2.13.9/allure-testng-2.13.9.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-java-commons/2.13.9/allure-java-commons-2.13.9.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-model/2.13.9/allure-model-2.13.9.jar:/Users/tuyentle/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/Users/tuyentle/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.12.2/jackson-databind-2.12.2.jar:/Users/tuyentle/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.12.2/jackson-annotations-2.12.2.jar:/Users/tuyentle/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.12.2/jackson-core-2.12.2.jar:/Users/tuyentle/.m2/repository/org/apache/tika/tika-core/1.25/tika-core-1.25.jar:/Users/tuyentle/.m2/repository/org/jooq/joor-java-8/0.9.13/joor-java-8-0.9.13.jar:/Users/tuyentle/.m2/repository/io/qameta/allure/allure-test-filter/2.13.9/allure-test-filter-2.13.9.jar:/Users/tuyentle/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/tuyentle"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre"/>
+    <property name="basedir" value="/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton/target/surefire/surefirebooter2608471354130879580.jar:/Users/tuyentle/.m2/repository/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="1.8.0_211-b12"/>
+    <property name="user.name" value="tuyentle"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="10.16"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/tuyentle/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/9p/vl825gf16v53m4z4wynd3d0c0000gn/T/"/>
+    <property name="java.version" value="1.8.0_211"/>
+    <property name="user.dir" value="/Users/tuyentle/Desktop/Testing/Project01/demo-project-skeleton"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="baseUrl" value="http://demowebshop.tricentis.com"/>
+    <property name="java.library.path" value="/Users/tuyentle/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.211-b12"/>
+    <property name="java.ext.dirs" value="/Users/tuyentle/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+  </properties>
+  <testcase name="testBuildingCheapComputer[CheapComputer{processorType=&apos;PROCESSOR_FAST&apos;, ram=&apos;RAM_8GB&apos;, hdd=&apos;HDD_400GB&apos;, os=&apos;null&apos;, software=&apos;null&apos;}](1)" classname="tests.order.BuildCheapComputerTest" time="8.986">
+    <system-out><![CDATA[[Configuration] [WARN] Detected a static method [tests.BaseTest.instantiateDriverObject()]. Static configuration methods can cause  unexpected behavior.
+[Configuration] [WARN] Detected a static method [tests.BaseTest.clearCookies()]. Static configuration methods can cause  unexpected behavior.
+[Configuration] [WARN] Detected a static method [tests.BaseTest.instantiateDriverObject()]. Static configuration methods can cause  unexpected behavior.
+[Configuration] [WARN] Detected a static method [tests.BaseTest.clearCookies()]. Static configuration methods can cause  unexpected behavior.
+]]></system-out>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Starting ChrSomteaDrrtiivng Cehr 9r4o.m0e.D4r6i06v.e6r1  9(44.0.41608b67.861f5 (843818ebd70b8f1c568398bb4e5e1de0ab0215c21679b18b45e45911e5a-r0e2fs5/2b1r7a18n5c4h9-1h5e-raedfss//4b6r0a6n@c{h#-1h2e0a4d}s)/ 4on6 0p6o@r{t# 14220449}7)
+ Oonnl y ploorcta l1 8c3o9n
+nOecntliyo nlso caarle  caolnlnoewcetdi.o
+nPsl eaarsee  saelel ohwtetdp.s
+:P/l/ecahsreo mseeder ivhetrt.pcsh:r/o/mciuhmr.oormge/dserciuvrietry.-cconsihderroamtiiuomn.so frogr/ ssueggcesutriiotnys- coonns ikdeeeraptiinogn s Cfhorr osmugegDerstiivoensr  osn akfeeep.i
+ng CChhrroommeeDDrriivveerr  wsaafes. 
+stCahrtreodm esDurcicevsesrf uwlalsy .s
+tarted successfully.
+Oct 13, 2021 6:43:52 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Oct 13, 2021 6:43:52 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+  </testcase>
+  <testcase name="testBuildingCheapComputer[CheapComputer{processorType=&apos;PROCESSOR_FAST&apos;, ram=&apos;RAM_4GB&apos;, hdd=&apos;HDD_400GB&apos;, os=&apos;null&apos;, software=&apos;null&apos;}](2)" classname="tests.order.BuildCheapComputerTest" time="1.85"/>
+  <testcase name="testBuildingCheapComputer[CheapComputer{processorType=&apos;PROCESSOR_FAST&apos;, ram=&apos;RAM_2GB&apos;, hdd=&apos;HDD_400GB&apos;, os=&apos;null&apos;, software=&apos;null&apos;}](3)" classname="tests.order.BuildCheapComputerTest" time="1.579"/>
+  <testcase name="testBuildingStandardComputer[CheapComputer{processorType=&apos;INTEL_22_GHZ&apos;, ram=&apos;RAM_8GB&apos;, hdd=&apos;HDD_400GB&apos;, os=&apos;null&apos;, software=&apos;null&apos;}](1)" classname="tests.order.BuildStandardComputerTest" time="0.161">
+    <failure message="[ERR] Total price is not correct! expected [960.0] but found [1410.0]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: [ERR] Total price is not correct! expected [960.0] but found [1410.0]
+	at tests.order.BuildStandardComputerTest.testBuildingStandardComputer(BuildStandardComputerTest.java:29)
+]]></failure>
+  </testcase>
+  <testcase name="testBuildingStandardComputer[CheapComputer{processorType=&apos;INTEL_25_GHZ&apos;, ram=&apos;RAM_4GB&apos;, hdd=&apos;HDD_400GB&apos;, os=&apos;null&apos;, software=&apos;null&apos;}](2)" classname="tests.order.BuildStandardComputerTest" time="0.112">
+    <failure message="[ERR] Total price is not correct! expected [935.0] but found [1385.0]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: [ERR] Total price is not correct! expected [935.0] but found [1385.0]
+	at tests.order.BuildStandardComputerTest.testBuildingStandardComputer(BuildStandardComputerTest.java:29)
+]]></failure>
+  </testcase>
+  <testcase name="testBuildingStandardComputer[CheapComputer{processorType=&apos;INTEL_22_GHZ&apos;, ram=&apos;RAM_2GB&apos;, hdd=&apos;HDD_400GB&apos;, os=&apos;null&apos;, software=&apos;null&apos;}](3)" classname="tests.order.BuildStandardComputerTest" time="2.057">
+    <failure message="[ERR] Total price is not correct! expected [900.0] but found [1350.0]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: [ERR] Total price is not correct! expected [900.0] but found [1350.0]
+	at tests.order.BuildStandardComputerTest.testBuildingStandardComputer(BuildStandardComputerTest.java:29)
+]]></failure>
+  </testcase>
+</testsuite>
