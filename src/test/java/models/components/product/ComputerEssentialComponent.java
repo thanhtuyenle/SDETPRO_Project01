@@ -3,12 +3,16 @@ package models.components.product;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import testdata.purchasing.ComputerSpec;
+
+import java.util.List;
 
 public abstract class ComputerEssentialComponent {
 
     private final WebDriver driver;
     private final By addToCartBtnSel = By.cssSelector("[id^='add-to-cart-button']");
+    private final By allOptionsSel = By.cssSelector(".option-list input");
 
     public ComputerEssentialComponent(WebDriver driver) {
         this.driver = driver;
@@ -31,6 +35,14 @@ public abstract class ComputerEssentialComponent {
         String selectorString = "//label[contains(text(), \"" + optionValue + "\")]";
         By optionSel = By.xpath(selectorString);
         driver.findElement(optionSel).click();
+    }
+
+    public void unSelectAllDefaultOptions(){
+        List<WebElement> allOptionsElems = driver.findElements(allOptionsSel);
+        for (WebElement option : allOptionsElems) {
+            if(option.getAttribute("checked") != null)
+                option.click();
+        }
     }
 
     @Step("Click on [Add to cart]")

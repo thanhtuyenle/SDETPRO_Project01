@@ -8,10 +8,11 @@ import org.testng.annotations.Test;
 import testdata.purchasing.ComputerDataObject;
 import testdata.url.URL;
 import testflows.order.computer.BuyingComputerFlow;
+import testflows.order.computer.ComputerPriceType;
 import tests.BaseTest;
 import utils.data.ComputerTestDataGenerator;
 
-public class BuildCheapComputerTest extends BaseTest {
+public class BuildCheapComputerTest extends BaseTest implements ComputerPriceType {
 
     @Test(dataProvider = "cheapCompsDataSet", description = "Buying a cheap computer")
     @Description(value = "Using a set of utils.data with different computer specs and check total price in cart")
@@ -26,7 +27,7 @@ public class BuildCheapComputerTest extends BaseTest {
 
         // Go to Shopping cart Page
         goTo(URL.CART);
-        orderingComputerFlow.verifyComputerAdded(computerDataObject);
+        orderingComputerFlow.verifyComputerAdded(computerDataObject,ComputerPriceType.cheapComputerStartPrice);
 
     }
 

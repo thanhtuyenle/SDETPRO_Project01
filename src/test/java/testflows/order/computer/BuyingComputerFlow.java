@@ -10,7 +10,7 @@ import testdata.purchasing.ComputerSpec;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
+public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements ComputerPriceType {
 
     private final WebDriver driver;
     private T essentialCompGeneric;
@@ -32,6 +32,7 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
         if (essentialCompGeneric == null) {
             throw new RuntimeException("Please call withComputerType to specify computer type!");
         }
+        essentialCompGeneric.unSelectAllDefaultOptions();
         ItemDetailsPage detailsPage = new ItemDetailsPage(driver);
 
         // Build Comp specs
@@ -48,23 +49,29 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
         }
     }
 
-    public void verifyComputerAdded(ComputerDataObject simpleComputer) {
+    public void verifyComputerAdded(ComputerDataObject computerDataObject, double startPrice) {
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
-
-        // TODO: need to handle this price
-        final double fixedPrice = 800.0;
 
         // Get additional fee
         double additionalFees = 0.0;
-        additionalFees += ComputerSpec.valueOf(simpleComputer.getProcessorType()).additionPrice();
-        additionalFees += ComputerSpec.valueOf(simpleComputer.getRam()).additionPrice();
-        additionalFees += ComputerSpec.valueOf(simpleComputer.getHdd()).additionPrice();
+        additionalFees += ComputerSpec.valueOf(computerDataObject.getProcessorType()).additionPrice();
+        additionalFees += ComputerSpec.valueOf(computerDataObject.getRam()).additionPrice();
+        additionalFees += ComputerSpec.valueOf(computerDataObject.getHdd()).additionPrice();
 
         // Get Total current price for computer
-        double currentCompPrice = fixedPrice + additionalFees;
+        double currentCompPrice = startPrice + additionalFees;
+
+        // Print all price list for the items
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(subTotal));
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(shipping));
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(tax));
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(total));
 
         // Compare
         double itemTotalPrice = shoppingCartPage.shoppingCartItemComp().itemTotalPrice();
         Assert.assertEquals(itemTotalPrice, currentCompPrice, "[ERR] Total price is not correct!");
+
+        shoppingCartPage.cartFooterComponent().getCartTotalComponent().getTermOfServiceSel().click();
+        shoppingCartPage.cartFooterComponent().getCartTotalComponent().getCheckoutSel().click();
     }
 }
