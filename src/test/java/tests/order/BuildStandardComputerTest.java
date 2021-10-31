@@ -28,6 +28,8 @@ public class BuildStandardComputerTest extends BaseTest implements ComputerPrice
         // Go to Shopping cart Page
         goTo(URL.CART);
         orderingComputerFlow.verifyComputerAdded(computerDataObject, ComputerPriceType.standardComputerStartPrice);
+
+        orderingComputerFlow.checkout();
     }
 
     @DataProvider()

@@ -29,6 +29,7 @@ public class BuildCheapComputerTest extends BaseTest implements ComputerPriceTyp
         goTo(URL.CART);
         orderingComputerFlow.verifyComputerAdded(computerDataObject,ComputerPriceType.cheapComputerStartPrice);
 
+        orderingComputerFlow.checkout();
     }
 
     @DataProvider()

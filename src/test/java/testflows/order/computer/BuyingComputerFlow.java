@@ -1,6 +1,9 @@
 package testflows.order.computer;
 
+import models.components.checkout.BillingAddressComponent;
 import models.components.product.ComputerEssentialComponent;
+import models.pages.CheckOutOptionPage;
+import models.pages.CheckOutPage;
 import models.pages.ItemDetailsPage;
 import models.pages.cart.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
@@ -73,5 +76,30 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
 
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getTermOfServiceSel().click();
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getCheckoutSel().click();
+    }
+
+    public void checkout() {
+        CheckOutOptionPage checkOutOptionPage = new CheckOutOptionPage(driver);
+        checkOutOptionPage.asGuestOrRegisteredUserComp().checkoutAsGuestBtn().click();
+
+        CheckOutPage checkOutPage = new CheckOutPage(driver);
+        checkOutPage.getBillingAddressComponent().firstName().sendKeys("firstname");
+        checkOutPage.getBillingAddressComponent().lastName().sendKeys("lastname");
+        checkOutPage.getBillingAddressComponent().email().sendKeys("email@email.com");
+        checkOutPage.getBillingAddressComponent().selectCountry("United States");
+        checkOutPage.getBillingAddressComponent().selectState("Alabama");
+        checkOutPage.getBillingAddressComponent().city().sendKeys("city");
+        checkOutPage.getBillingAddressComponent().address1().sendKeys("Address 1");
+        checkOutPage.getBillingAddressComponent().zipCode().sendKeys("12345");
+        checkOutPage.getBillingAddressComponent().phoneNumber().sendKeys("9999999999");
+        checkOutPage.getBillingAddressComponent().continueBtn().click();
+
+        checkOutPage.getShippingAddressComponent().continueBtn().click();
+        checkOutPage.getShippingMethodComponent().continueBtn().click();
+        checkOutPage.getPaymentMethodComponent().continueBtn().click();
+        checkOutPage.getPaymentInformationComponent().continueBtn().click();
+        checkOutPage.getConfirmOrderComponent().confirmBtn().click();
+        checkOutPage.getConfirmOrderComponent().completedCheckoutBtn().click();
+
     }
 }

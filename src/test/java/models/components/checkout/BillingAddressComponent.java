@@ -18,10 +18,11 @@ public class BillingAddressComponent {
     private By zipCodeSel = By.cssSelector("#BillingNewAddress_ZipPostalCode");
     private By phoneNumberSel = By.cssSelector("#BillingNewAddress_PhoneNumber");
 
+    private By continueBtnSel = By.cssSelector(".new-address-next-step-button");
+
     public BillingAddressComponent(WebDriver driver) {
         this.driver = driver;
     }
-
     public WebElement firstName() {
         return driver.findElement(firstNameSel);
     }
@@ -59,4 +60,10 @@ public class BillingAddressComponent {
     public WebElement phoneNumber() {
         return driver.findElement(phoneNumberSel);
     }
+
+    public WebElement continueBtn() {
+        return driver.findElement(continueBtnSel);
+    }
+
+
 }
