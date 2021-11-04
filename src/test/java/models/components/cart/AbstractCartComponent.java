@@ -43,6 +43,7 @@ public abstract class AbstractCartComponent {
             CartItemRowData cartItemRowData = new CartItemRowData(imgSrc, productName, productNameLink,
                     productAttributes, productEditLink, price, quanlity, subTotal);
             cartItemRowDataList.add(cartItemRowData);
+            return cartItemRowDataList;
         }
     }
     public static class CartItemRowData {
