@@ -7,14 +7,22 @@ import org.openqa.selenium.WebDriver;
 public class ShoppingCartPage {
 
     private final WebDriver driver;
+    private CartComponent cartComponent;
+    private CartFooterComponent cartFooterComponent;
 
     public ShoppingCartPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public CartComponent shoppingCartItemComp(){
-        return new CartComponent(driver);
+        if(cartComponent == null)
+            cartComponent = new CartComponent(driver);
+        return cartComponent;
     }
 
-    public CartFooterComponent cartFooterComponent() {return new CartFooterComponent(driver);}
+    public CartFooterComponent cartFooterComponent() {
+        if (cartFooterComponent == null)
+            cartFooterComponent = new CartFooterComponent(driver);
+        return cartFooterComponent;
+    }
 }
