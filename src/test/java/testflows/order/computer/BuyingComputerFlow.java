@@ -1,5 +1,7 @@
 package testflows.order.computer;
 
+import models.components.cart.AbstractCartComponent;
+import models.components.cart.CartComponent;
 import models.components.checkout.BillingAddressComponent;
 import models.components.product.ComputerEssentialComponent;
 import models.pages.CheckOutOptionPage;
@@ -62,17 +64,31 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
         additionalFees += ComputerSpec.valueOf(computerDataObject.getHdd()).additionPrice();
 
         // Get Total current price for computer
-        double currentCompPrice = startPrice + additionalFees;
+        double expectedSubTotalPrice = startPrice + additionalFees;
+        double subTotalPrice = shoppingCartPage.shoppingCartItemComp().itemTotalPrice();
+        Assert.assertEquals(subTotalPrice, expectedSubTotalPrice, "[ERR] Total price is not correct!");
 
-        // Print all price list for the items
-        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(subTotal));
-        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(shipping));
-        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(tax));
-        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(total));
+        // Verify item details in cart
+        for(CartComponent.CartItemRowData cartItemRowData: shoppingCartPage.shoppingCartItemComp().cartItemRowDataList()) {
+            Assert.assertTrue(cartItemRowData.getProductAttributes().contains(ComputerSpec.valueOf(computerDataObject.getProcessorType()).value()),
+                    "[ERR] Processor Type info is not in item details");
 
-        // Compare
-        double itemTotalPrice = shoppingCartPage.shoppingCartItemComp().itemTotalPrice();
-        Assert.assertEquals(itemTotalPrice, currentCompPrice, "[ERR] Total price is not correct!");
+            Assert.assertTrue(cartItemRowData.getProductAttributes().contains(ComputerSpec.valueOf(computerDataObject.getHdd()).value()),
+                    "[ERR] HDD Type info is not in item details");
+
+            Assert.assertEquals(cartItemRowData.getPrice(), expectedSubTotalPrice, "[ERR] Display price is not correct!");
+
+            String productName = cartItemRowData.getProductName();
+            String productLink = cartItemRowData.getProductEditLink();
+            Assert.assertNotNull(productName, "[ERR] Product name is empty");
+            Assert.assertNotNull(productLink, "[ERR] Product link is empty");
+        }
+
+        // Print all price list for the items in Cart Footer Component
+//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(subTotal));
+//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(shipping));
+//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(tax));
+//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(total));
 
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getTermOfServiceSel().click();
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getCheckoutSel().click();

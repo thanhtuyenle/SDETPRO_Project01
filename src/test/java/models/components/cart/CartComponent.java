@@ -4,19 +4,19 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CartComponent {
-
-    private final WebDriver driver;
-    private final By itemTotalPriceSel = By.className("product-subtotal");
+public class CartComponent extends AbstractCartComponent{
 
     public CartComponent(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    @Step("Get current total price")
-    public Double itemTotalPrice(){
-        String itemTotalPriceStr = driver.findElement(itemTotalPriceSel).getText();
-        return Double.parseDouble(itemTotalPriceStr);
+    @Override
+    protected By productPriceSel() {
+        return By.className("qty-input");
     }
 
+    @Override
+    protected boolean isSummaryCartComponent() {
+        return false;
+    }
 }

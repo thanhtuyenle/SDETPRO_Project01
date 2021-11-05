@@ -1,5 +1,6 @@
 package models.components.cart;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public abstract class AbstractCartComponent {
     private final WebDriver driver;
+    private final By itemTotalPriceSel = By.className("product-subtotal");
     private final By cartItemRowSel = By.cssSelector("table[class='cart'] .cart-item-row");
     private final By productPictureSel = By.cssSelector(".product-picture img");
     private final By productNameSel = By.cssSelector(".product-name");
@@ -21,6 +23,16 @@ public abstract class AbstractCartComponent {
     public AbstractCartComponent(WebDriver driver) {
         this.driver = driver;
     }
+
+    @Step("Get current total price")
+    public Double itemTotalPrice() {
+        String itemTotalPriceStr = driver.findElement(itemTotalPriceSel).getText();
+        return Double.parseDouble(itemTotalPriceStr);
+    }
+
+    protected abstract By productPriceSel();
+
+    protected abstract boolean isSummaryCartComponent();
 
     public List<CartItemRowData> cartItemRowDataList() {
         List<CartItemRowData> cartItemRowDataList = new ArrayList<>();
@@ -43,8 +55,8 @@ public abstract class AbstractCartComponent {
             CartItemRowData cartItemRowData = new CartItemRowData(imgSrc, productName, productNameLink,
                     productAttributes, productEditLink, price, quanlity, subTotal);
             cartItemRowDataList.add(cartItemRowData);
-            return cartItemRowDataList;
         }
+        return cartItemRowDataList;
     }
     public static class CartItemRowData {
         private final String imgSrc;
