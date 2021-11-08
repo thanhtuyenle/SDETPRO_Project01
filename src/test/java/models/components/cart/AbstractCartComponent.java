@@ -49,7 +49,9 @@ public abstract class AbstractCartComponent {
             String productEditLink = productEditLinkElems.isEmpty()? null: productEditLinkElems.get(0).getText();
 
             double price = Double.parseDouble(cartItemRowElem.findElement(productUnitPriceSel).getText());
-            double quanlity = Double.parseDouble(cartItemRowElem.findElement(quantityInputSel).getAttribute("value"));
+            double quanlity = isSummaryCartComponent()
+                    ? Double.parseDouble((cartItemRowElem.findElement(quantityInputSel).getText()))
+                    : Double.parseDouble(cartItemRowElem.findElement(quantityInputSel).getAttribute("value"));
             double subTotal = Double.parseDouble(cartItemRowElem.findElement(productSubTotalPriceSel).getText());
 
             CartItemRowData cartItemRowData = new CartItemRowData(imgSrc, productName, productNameLink,
