@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testdata.purchasing.ComputerDataObject;
+import testdata.purchasing.UserDataObject;
 import testdata.url.URL;
 import testflows.order.computer.BuyingComputerFlow;
 import testflows.order.computer.ComputerPriceType;
@@ -29,7 +30,18 @@ public class BuildCheapComputerTest extends BaseTest implements ComputerPriceTyp
         goTo(URL.CART);
         orderingComputerFlow.verifyComputerAdded(computerDataObject,ComputerPriceType.cheapComputerStartPrice);
 
-        orderingComputerFlow.checkout();
+        // checkout
+        UserDataObject userDataObject = new UserDataObject();
+        userDataObject.setFirstName("Tester");
+        userDataObject.setLastName("Lee");
+        userDataObject.setEmail("test@sdet.com");
+        userDataObject.setCountry("United States");
+        userDataObject.setState("Alaska");
+        userDataObject.setCity("Dallas");
+        userDataObject.setAddress1("123 Do Not Send");
+        userDataObject.setZipcode("75000");
+        userDataObject.setPhone("9999999999");
+        orderingComputerFlow.checkout(userDataObject);
     }
 
     @DataProvider()

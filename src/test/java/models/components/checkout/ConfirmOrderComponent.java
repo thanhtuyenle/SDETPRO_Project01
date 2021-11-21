@@ -52,7 +52,7 @@ public class ConfirmOrderComponent {
         private final By phoneSel = By.cssSelector(".phone");
         private final By faxSel = By.cssSelector(".fax");
         private final By address1Sel = By.cssSelector(".address1");
-        private final By citySel = By.cssSelector(".city-state-zip");
+        private final By cityStateZipSel = By.cssSelector(".city-state-zip");
         private final By countrySel = By.cssSelector(".country");
 
         protected WebElement component;
@@ -83,8 +83,8 @@ public class ConfirmOrderComponent {
             return component.findElement(address1Sel);
         }
 
-        public WebElement city() {
-            return component.findElement(citySel);
+        public WebElement cityStateZip() {
+            return component.findElement(cityStateZipSel);
         }
 
         public WebElement country() {
