@@ -17,7 +17,7 @@ public abstract class AbstractCartComponent {
     private final By productAttributesSel = By.cssSelector(".attributes");
     private final By productEditSel = By.cssSelector(".edit-item a");
     private final By productUnitPriceSel = By.cssSelector(".product-unit-price");
-    private final By quantityInputSel = By.cssSelector(".qty-input");
+    //private final By quantityInputSel = By.cssSelector(".qty-input");
     private final By productSubTotalPriceSel = By.cssSelector(".product-subtotal");
 
     public AbstractCartComponent(WebDriver driver) {
@@ -50,8 +50,8 @@ public abstract class AbstractCartComponent {
 
             double price = Double.parseDouble(cartItemRowElem.findElement(productUnitPriceSel).getText());
             double quanlity = isSummaryCartComponent()
-                    ? Double.parseDouble((cartItemRowElem.findElement(quantityInputSel).getText()))
-                    : Double.parseDouble(cartItemRowElem.findElement(quantityInputSel).getAttribute("value"));
+                    ? Double.parseDouble((cartItemRowElem.findElement(productPriceSel()).getText()))
+                    : Double.parseDouble(cartItemRowElem.findElement(productPriceSel()).getAttribute("value"));
             double subTotal = Double.parseDouble(cartItemRowElem.findElement(productSubTotalPriceSel).getText());
 
             CartItemRowData cartItemRowData = new CartItemRowData(imgSrc, productName, productNameLink,

@@ -1,7 +1,7 @@
 package models.components.checkout;
 
-import models.components.cart.CartComponent;
 import models.components.cart.CartFooterComponent;
+import models.components.cart.SummaryCartComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ public class ConfirmOrderComponent {
     private final By completedCheckoutBtnSel = By.cssSelector(".order-completed-continue-button");
     private BillingAddressComponent billingAddressComponent;
     private ShippingAddressComponent shippingAddressComponent;
-    private CartComponent cartComponent;
+    private SummaryCartComponent summaryCartComponent;
     private CartFooterComponent cartFooterComponent;
 
     public ConfirmOrderComponent(WebDriver driver) {
@@ -28,8 +28,8 @@ public class ConfirmOrderComponent {
         return new ShippingAddressComponent(driver);
     }
 
-    public CartComponent getCartComponent() {
-        return new CartComponent(driver);
+    public SummaryCartComponent getSummaryCartComponent() {
+        return new SummaryCartComponent(driver);
     }
 
     public CartFooterComponent getCartFooterComponent() {

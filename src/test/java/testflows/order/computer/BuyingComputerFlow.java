@@ -16,6 +16,8 @@ import testdata.purchasing.ComputerSpec;
 import testdata.purchasing.UserDataObject;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
 
 public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements ComputerPriceType {
 
@@ -210,9 +212,20 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
         System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().country().getText());
         System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().shippingMethod().getText());
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        checkOutPage.getConfirmOrderComponent().confirmBtn().click();
-        // TODO: Verify the Shipping Info as well!!
 
+
+        //TODO : need to add verification points
+        List<CartComponent.CartItemRowData> cartItemRowDataList = checkOutPage.getConfirmOrderComponent().getSummaryCartComponent().cartItemRowDataList();
+        for(CartComponent.CartItemRowData cartItemDataReturn: cartItemRowDataList) {
+            System.out.println(cartItemDataReturn.getImgSrc());
+            System.out.println(cartItemDataReturn.getPrice());
+        }
+
+        Map<String, Double> priceMap = checkOutPage.getConfirmOrderComponent().getCartFooterComponent().getCartTotalComponent().getPriceMap();
+        for(String key: priceMap.keySet()) {
+            System.out.println(key + ": " + priceMap.get(key));
+        }
+        checkOutPage.getConfirmOrderComponent().confirmBtn().click();
         checkOutPage.getConfirmOrderComponent().completedCheckoutBtn().click();
 
 
