@@ -122,7 +122,7 @@ public class ConfirmOrderComponent {
         }
 
         public WebElement shippingMethod() {
-            return driver.findElement(shippingMethodSel);
+            return component.findElement(shippingMethodSel);
         }
     }
 }

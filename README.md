@@ -10,8 +10,8 @@ This project does not contain fully source code. It's just skeleton with some st
 * Clone the project
 * Go to root directory (or open terminal in intelliJ IDEA terminal) and type
 
-```
-mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/test-suites/Regression.xml -DbaseUrl=http://demowebshop.tricentis.com
+```![img.png](img.png)
+
 ```
 
 Then make sure you can report reports:

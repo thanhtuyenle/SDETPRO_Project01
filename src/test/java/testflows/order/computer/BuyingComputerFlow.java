@@ -3,6 +3,7 @@ package testflows.order.computer;
 import models.components.cart.AbstractCartComponent;
 import models.components.cart.CartComponent;
 import models.components.checkout.BillingAddressComponent;
+import models.components.checkout.ShippingAddressComponent;
 import models.components.product.ComputerEssentialComponent;
 import models.pages.CheckOutOptionPage;
 import models.pages.CheckOutPage;
@@ -101,54 +102,66 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
         checkOutOptionPage.asGuestOrRegisteredUserComp().checkoutAsGuestBtn().click();
 
         CheckOutPage checkOutPage = new CheckOutPage(driver);
-        checkOutPage.getBillingAddressComponent().firstName().sendKeys(userDataObject.getFirstName());
-        checkOutPage.getBillingAddressComponent().lastName().sendKeys(userDataObject.getLastName());
-        checkOutPage.getBillingAddressComponent().email().sendKeys(userDataObject.getEmail());
-        checkOutPage.getBillingAddressComponent().selectCountry(userDataObject.getCountry());
-        checkOutPage.getBillingAddressComponent().selectState(userDataObject.getState());
-        checkOutPage.getBillingAddressComponent().city().sendKeys(userDataObject.getCity());
-        checkOutPage.getBillingAddressComponent().address1().sendKeys(userDataObject.getAddress1());
-        checkOutPage.getBillingAddressComponent().phoneNumber().sendKeys(userDataObject.getPhone());
-        checkOutPage.getBillingAddressComponent().zipCode().sendKeys(userDataObject.getZipcode());
-        checkOutPage.getBillingAddressComponent().continueBtn().click();
+        BillingAddressComponent billingAddressComponent = checkOutPage.getBillingAddressComponent();
+        billingAddressComponent.firstName().sendKeys(userDataObject.getFirstName());
+        billingAddressComponent.lastName().sendKeys(userDataObject.getLastName());
+        billingAddressComponent.email().sendKeys(userDataObject.getEmail());
+        billingAddressComponent.selectCountry(userDataObject.getCountry());
+        billingAddressComponent.selectState(userDataObject.getState());
+        billingAddressComponent.city().sendKeys(userDataObject.getCity());
+        billingAddressComponent.address1().sendKeys(userDataObject.getAddress1());
+        billingAddressComponent.phoneNumber().sendKeys(userDataObject.getPhone());
+        billingAddressComponent.zipCode().sendKeys(userDataObject.getZipcode());
+        billingAddressComponent.continueBtn().click();
 
+        //ShippingAddressComponent shippingAddressComponent = checkOutPage.getShippingAddressComponent();
+//        shippingAddressComponent.firstName().sendKeys(userDataObject.getFirstName());
+//        shippingAddressComponent.lastName().sendKeys(userDataObject.getLastName());
+//        shippingAddressComponent.email().sendKeys(userDataObject.getEmail());
+//        shippingAddressComponent.selectCountry(userDataObject.getCountry());
+//        shippingAddressComponent.selectState(userDataObject.getState());
+//        shippingAddressComponent.city().sendKeys(userDataObject.getCity());
+//        shippingAddressComponent.address1().sendKeys(userDataObject.getAddress1());
+//        shippingAddressComponent.zipCode().sendKeys(userDataObject.getZipcode());
+//        shippingAddressComponent.phoneNumber().sendKeys(userDataObject.getPhone());
         checkOutPage.getShippingAddressComponent().continueBtn().click();
+
         checkOutPage.getShippingMethodComponent().continueBtn().click();
         checkOutPage.getPaymentMethodComponent().continueBtn().click();
-
         checkOutPage.getPaymentInformationComponent().continueBtn().click();
-        checkOutPage.getConfirmOrderComponent().confirmBtn().click();
 
-        //Verify Information display in ConfirmOrderConponent
+
+        //Verify Information display in ConfirmOrderConponent - Billing Address
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>");
-        String displayName = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().name().getText();
-        String displayFirstName = displayName.split("\\s")[0].trim();
-        String displayLastName = displayName.split("\\s")[1].trim();
-        Assert.assertEquals(displayFirstName, userDataObject.getFirstName(), "[ERR] ConfirmOrderComponent - First Name is not correct");
-        Assert.assertEquals(displayLastName, userDataObject.getLastName(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
+        String displayBillingName = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().name().getText();
+        String displayBillingFirstName = displayBillingName.split("\\s")[0].trim();
+        String displayBillingLastName = displayBillingName.split("\\s")[1].trim();
+        Assert.assertEquals(displayBillingFirstName, userDataObject.getFirstName(), "[ERR] ConfirmOrderComponent - First Name is not correct");
+        Assert.assertEquals(displayBillingLastName, userDataObject.getLastName(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
 
-        // TODO: Add verification for the rest below..., not only printing...
-        String displayEmail = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().email().getText().replace("Email: ", "");
-        String displayPhone = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().phone().getText().replace("Phone: ", "");
-        String displayAddress1 = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().address1().getText();
-        String displayCityStateZip = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().cityStateZip().getText();
-        String displayCity = displayCityStateZip.split(",")[0].trim();
-        String displayStateZip = displayCityStateZip.split(",")[1].trim();
-        String displayState = displayStateZip.split("\\s")[0].trim();
-        String dispalyZip = displayStateZip.split("\\s")[1].trim();
-        String displayCountry = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().country().getText();
-        String displayPaymentMethod = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().paymentMethod().getText();
+        String displayBillingEmail = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().email().getText().replace("Email: ", "");
+        String displayBillingPhone = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().phone().getText().replace("Phone: ", "");
+        String displayBillingAddress1 = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().address1().getText();
+        String displayBillingCityStateZip = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().cityStateZip().getText();
+        String displayBillingCity = displayBillingCityStateZip.split(",")[0].trim();
+        String displayBillingStateZip = displayBillingCityStateZip.split(",")[1].trim();
+        String displayBillingState = displayBillingStateZip.split("\\s")[0].trim();
+        String dispalyBillingZip = displayBillingStateZip.split("\\s")[1].trim();
+        String displayBillingCountry = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().country().getText();
+        String displayBillingPaymentMethod = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().paymentMethod().getText();
 
 
-        Assert.assertEquals(displayEmail, userDataObject.getEmail(), "[ERR] ConfirmOrderComponent - Email is not correct");
-        Assert.assertEquals(displayPhone, userDataObject.getPhone(), "[ERR] ConfirmOrderComponent - Phone is not correct");
-        Assert.assertEquals(displayAddress1, userDataObject.getAddress1(), "[ERR] Address 1 is not correct");
-        Assert.assertEquals(displayCity, userDataObject.getCity(), "[ERR] ConfirmOrderComponent - City is not correct");
-        Assert.assertEquals(displayState, userDataObject.getState(), "[ERR] ConfirmOrderComponent - State is not correct");
-        Assert.assertEquals(dispalyZip, userDataObject.getZipcode(), "[ERR] ConfirmOrderComponent - Zipcode is not correct");
-        Assert.assertEquals(displayCountry, userDataObject.getCountry(), "[ERR] ConfirmOrderComponent - Country is not correct");
-        Assert.assertEquals(displayPaymentMethod, "Cash On Delivery (COD)", "[ERR]ConfirmOrderComponent - PaymentMethod is not correct");
+        Assert.assertEquals(displayBillingEmail, userDataObject.getEmail(), "[ERR] ConfirmOrderComponent - Email is not correct");
+        Assert.assertEquals(displayBillingPhone, userDataObject.getPhone(), "[ERR] ConfirmOrderComponent - Phone is not correct");
+        Assert.assertEquals(displayBillingAddress1, userDataObject.getAddress1(), "[ERR] Address 1 is not correct");
+        Assert.assertEquals(displayBillingCity, userDataObject.getCity(), "[ERR] ConfirmOrderComponent - City is not correct");
+        Assert.assertEquals(displayBillingState, userDataObject.getState(), "[ERR] ConfirmOrderComponent - State is not correct");
+        Assert.assertEquals(dispalyBillingZip, userDataObject.getZipcode(), "[ERR] ConfirmOrderComponent - Zipcode is not correct");
+        Assert.assertEquals(displayBillingCountry, userDataObject.getCountry(), "[ERR] ConfirmOrderComponent - Country is not correct");
+        //TODO: should not hard code here
+        Assert.assertEquals(displayBillingPaymentMethod, "Cash On Delivery (COD)", "[ERR]ConfirmOrderComponent - PaymentMethod is not correct");
 
+        System.out.println(checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().name().getText());
         System.out.println(checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().email().getText());
         System.out.println(checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().phone().getText());
         System.out.println(checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().fax().getText());
@@ -158,6 +171,46 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
         System.out.println(checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().paymentMethod().getText());
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
+        //Verify Information display in ConfirmOrderConponent - Shipping Address
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>");
+        String displayShippingName = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().name().getText();
+        String displayShippingFirstName = displayShippingName.split("\\s")[0].trim();
+        String displayShippingLastName = displayShippingName.split("\\s")[1].trim();
+        Assert.assertEquals(displayShippingFirstName, userDataObject.getFirstName(), "[ERR] ConfirmOrderComponent - First Name is not correct");
+        Assert.assertEquals(displayShippingLastName, userDataObject.getLastName(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
+
+        String displayShippingEmail = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().email().getText().replace("Email: ", "");
+        String displayShippingPhone = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().phone().getText().replace("Phone: ", "");
+        String displayShippingAddress1 = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().address1().getText();
+        String displayShippingCityStateZip = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().cityStateZip().getText();
+        String displayShippingCity = displayShippingCityStateZip.split(",")[0].trim();
+        String displayShippingStateZip = displayShippingCityStateZip.split(",")[1].trim();
+        String displayShippingState = displayShippingStateZip.split("\\s")[0].trim();
+        String dispalyShippingZip = displayShippingStateZip.split("\\s")[1].trim();
+        String displayShippingCountry = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().country().getText();
+        String displayShippingMethod = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().shippingMethod().getText();
+
+
+        Assert.assertEquals(displayShippingEmail, userDataObject.getEmail(), "[ERR] ConfirmOrderComponent - Email is not correct");
+        Assert.assertEquals(displayShippingPhone, userDataObject.getPhone(), "[ERR] ConfirmOrderComponent - Phone is not correct");
+        Assert.assertEquals(displayShippingAddress1, userDataObject.getAddress1(), "[ERR] Address 1 is not correct");
+        Assert.assertEquals(displayShippingCity, userDataObject.getCity(), "[ERR] ConfirmOrderComponent - City is not correct");
+        Assert.assertEquals(displayShippingState, userDataObject.getState(), "[ERR] ConfirmOrderComponent - State is not correct");
+        Assert.assertEquals(dispalyShippingZip, userDataObject.getZipcode(), "[ERR] ConfirmOrderComponent - Zipcode is not correct");
+        Assert.assertEquals(displayShippingCountry, userDataObject.getCountry(), "[ERR] ConfirmOrderComponent - Country is not correct");
+        //TODO: should not hard code here
+        Assert.assertEquals(displayShippingMethod, "Ground", "[ERR]ConfirmOrderComponent - ShippingMethod is not correct");
+
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().name().getText());
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().email().getText());
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().phone().getText());
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().fax().getText());
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().address1().getText());
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().cityStateZip().getText());
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().country().getText());
+        System.out.println(checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().shippingMethod().getText());
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        checkOutPage.getConfirmOrderComponent().confirmBtn().click();
         // TODO: Verify the Shipping Info as well!!
 
         checkOutPage.getConfirmOrderComponent().completedCheckoutBtn().click();
