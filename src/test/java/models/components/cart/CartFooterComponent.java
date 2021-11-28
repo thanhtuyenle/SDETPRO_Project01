@@ -52,7 +52,7 @@ public class CartFooterComponent {
 
     public static class CartTotalComponent {
         private final WebDriver driver;
-        private final By priceTableRowsSel = By.cssSelector("table[class='cart-total']");
+        private final By priceTableRowsSel = By.cssSelector("table[class='cart-total'] tr");
 
         private final By termOfServiceSel = By.cssSelector("#termsofservice");
         private final By checkOutSel = By.cssSelector("#checkout");

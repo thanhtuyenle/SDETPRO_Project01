@@ -7,6 +7,7 @@ import models.components.checkout.ShippingAddressComponent;
 import models.components.product.ComputerEssentialComponent;
 import models.pages.CheckOutOptionPage;
 import models.pages.CheckOutPage;
+import models.pages.CheckoutCompletedPage;
 import models.pages.ItemDetailsPage;
 import models.pages.cart.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
@@ -90,10 +91,10 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
 
         //TODO: need to contiue modifying footer component
         // Print all price list for the items in Cart Footer Component
-//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(subTotal));
-//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(shipping));
-//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(tax));
-//        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(total));
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(subTotal));
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(shipping));
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(tax));
+        System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(total));
 
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getTermOfServiceSel().click();
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getCheckoutSel().click();
@@ -216,17 +217,35 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
 
         //TODO : need to add verification points
         List<CartComponent.CartItemRowData> cartItemRowDataList = checkOutPage.getConfirmOrderComponent().getSummaryCartComponent().cartItemRowDataList();
+        Double sumSubTotalPrice = 0.0;
+        Double itemSubTotalPrice = 0.0;
         for(CartComponent.CartItemRowData cartItemDataReturn: cartItemRowDataList) {
             System.out.println(cartItemDataReturn.getImgSrc());
             System.out.println(cartItemDataReturn.getPrice());
+            itemSubTotalPrice += cartItemDataReturn.getSubTotal();
+            Assert.assertNotNull(cartItemDataReturn.getImgSrc());
         }
 
         Map<String, Double> priceMap = checkOutPage.getConfirmOrderComponent().getCartFooterComponent().getCartTotalComponent().getPriceMap();
+        System.out.println(">>>>>>>>>>>>> CartFooterComponent: ");
+        Double displayTotal = 0.0;
         for(String key: priceMap.keySet()) {
-            System.out.println(key + ": " + priceMap.get(key));
+            System.out.println( key + ": " + priceMap.get(key));
+            if(key.contains("Sub-Total"))
+                Assert.assertEquals(itemSubTotalPrice, priceMap.get(key), "Sub-Total is not expected");
         }
+        System.out.println("<<<<<<<<<<<<<<<");
+        //Confirm Order
         checkOutPage.getConfirmOrderComponent().confirmBtn().click();
-        checkOutPage.getConfirmOrderComponent().completedCheckoutBtn().click();
+
+        //Checkout Completed page
+        CheckoutCompletedPage checkoutCompletedPage = new CheckoutCompletedPage(driver);
+        Assert.assertEquals(checkoutCompletedPage.pageTitle().getText(),"Thank you", "[ERR]: Checkout completed title is not correct");
+        String orderId = checkoutCompletedPage.getCheckoutDataComponent().orderTextId();
+        String orderDetailsLink = checkoutCompletedPage.getCheckoutDataComponent().orderDetailsLink();
+        boolean isValidOrderDetailsLink = orderDetailsLink.endsWith(orderId);
+        Assert.assertTrue(isValidOrderDetailsLink, "[ERR]: Order Details link is not correct");
+        checkoutCompletedPage.getCheckoutDataComponent().continueBtn().click();
 
 
     }
