@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testdata.purchasing.ComputerDataObject;
-import testdata.purchasing.UserDataObject;
+import testdata.user.UserDataObject;
 import testdata.url.URL;
 import testflows.order.computer.BuyingComputerFlow;
 import testflows.order.computer.ComputerPriceType;
@@ -24,7 +24,7 @@ public class BuildStandardComputerTest extends BaseTest implements ComputerPrice
         // Go to cheap computer item page
         goTo(URL.STANDARD_COMP_DETAILS);
         orderingComputerFlow.withComputerEssentialComp(StandardEssentialComponent.class);
-        orderingComputerFlow.buildComputer(computerDataObject);
+        orderingComputerFlow.buildComputerAndAddToCart(computerDataObject);
 
         // Go to Shopping cart Page
         goTo(URL.CART);

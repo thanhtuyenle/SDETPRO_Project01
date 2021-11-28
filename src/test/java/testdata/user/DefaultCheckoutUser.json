@@ -1,0 +1,11 @@
+{
+  "firstname": "Tester",
+  "lastname": "Lee",
+  "email": "test@email.com",
+  "country": "United States",
+  "state": "Texas",
+  "city": "Dallas",
+  "address1": "123 Do Not Send",
+  "zipcode": "75000",
+  "phone": "9999999999"
+}

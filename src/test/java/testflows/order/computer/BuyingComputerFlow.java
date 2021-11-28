@@ -1,9 +1,7 @@
 package testflows.order.computer;
 
-import models.components.cart.AbstractCartComponent;
 import models.components.cart.CartComponent;
 import models.components.checkout.BillingAddressComponent;
-import models.components.checkout.ShippingAddressComponent;
 import models.components.product.ComputerEssentialComponent;
 import models.pages.CheckOutOptionPage;
 import models.pages.CheckOutPage;
@@ -14,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import testdata.purchasing.ComputerDataObject;
 import testdata.purchasing.ComputerSpec;
-import testdata.purchasing.UserDataObject;
+import testdata.user.UserDataObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -38,7 +36,7 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
         return this;
     }
 
-    public void buildComputer(ComputerDataObject compData) {
+    public void buildComputerAndAddToCart(ComputerDataObject compData) {
         if (essentialCompGeneric == null) {
             throw new RuntimeException("Please call withComputerType to specify computer type!");
         }

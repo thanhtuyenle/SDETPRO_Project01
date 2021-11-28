@@ -5,6 +5,7 @@
         <classes>
             <class name="tests.order.BuildCheapComputerTest"/>
             <class name="tests.order.BuildStandardComputerTest"/>
+            <class name="tests.order.BuildMultipleTypeComputerTest"/>
         </classes>
     </test>
 </suite>
