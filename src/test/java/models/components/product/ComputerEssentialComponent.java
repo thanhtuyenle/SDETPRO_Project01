@@ -11,16 +11,19 @@ import java.util.List;
 public abstract class ComputerEssentialComponent {
 
     private final WebDriver driver;
-    private final By addToCartBtnSel = By.cssSelector("[id^='add-to-cart-button']");
+
     private final By allOptionsSel = By.cssSelector(".option-list input");
 
+    private final By productQtySel = By.cssSelector(".qty-input");
+
+    private final By addToCartBtnSel = By.cssSelector("[id^='add-to-cart-button']");
     public ComputerEssentialComponent(WebDriver driver) {
         this.driver = driver;
     }
 
     public abstract void selectProcessorType(String type);
-    public abstract void selectRAM(String type);
 
+    public abstract void selectRAM(String type);
     @Step("Select HDD with value {type}")
     public void selectHDD(String type) {
         selectCompSpecOption(type);
@@ -43,6 +46,12 @@ public abstract class ComputerEssentialComponent {
             if(option.getAttribute("checked") != null)
                 option.click();
         }
+    }
+
+    public void productQtySel(int qty) {
+        WebElement productQtyElem = driver.findElement(productQtySel);
+        productQtyElem.clear();
+        productQtyElem.sendKeys(String.valueOf(qty));
     }
 
     @Step("Click on [Add to cart]")

@@ -6,9 +6,11 @@ import models.components.product.StandardEssentialComponent;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import testdata.purchasing.ComputerDataObject;
+import testdata.purchasing.ComputerType;
 import testdata.url.URL;
 import testdata.user.UserDataObject;
 import testflows.order.computer.BuyingComputerFlow;
+import testflows.order.computer.BuyingComputerFlowExtend;
 import testflows.order.computer.ComputerPriceType;
 import tests.BaseTest;
 import utils.data.ComputerTestDataGenerator;
@@ -20,7 +22,7 @@ public class BuildMultipleTypeComputerTest extends BaseTest implements ComputerP
     @Description(value = "Build 2 computers with different types")
     public void testBuildingCheapComputer() {
         WebDriver driver = getDriver();
-        BuyingComputerFlow orderingComputerFlow = new BuyingComputerFlow(driver);
+        BuyingComputerFlowExtend orderingComputerFlow = new BuyingComputerFlowExtend(driver);
 
         //Get list standard computer from json
         ComputerDataObject[] standardComputerTestData =
@@ -41,7 +43,8 @@ public class BuildMultipleTypeComputerTest extends BaseTest implements ComputerP
         // Go to cheap computer item page
         goTo(URL.STANDARD_COMP_DETAILS);
         orderingComputerFlow.withComputerEssentialComp(StandardEssentialComponent.class);
-        orderingComputerFlow.buildComputerAndAddToCart(standardComputerData);
+        int standardComputerQuantity = 3;
+        orderingComputerFlow.buildComputerAndAddToCart(ComputerType.STANDARD_COMPUTER, standardComputerData, standardComputerQuantity);
 
         //goTo(URL.CART);
         //orderingComputerFlow.verifyComputerAdded(standardComputerData, ComputerPriceType.standardComputerStartPrice);
@@ -49,11 +52,13 @@ public class BuildMultipleTypeComputerTest extends BaseTest implements ComputerP
         // Go to cheap computer item page
         goTo(URL.CHEAP_COMP_DETAILS);
         orderingComputerFlow.withComputerEssentialComp(CheapComputerEssentialComponent.class);
-        orderingComputerFlow.buildComputerAndAddToCart(cheapComputerData);
+        int cheapComputerQuantity = 2;
+        orderingComputerFlow.buildComputerAndAddToCart(ComputerType.CHEAP_COMPUTER, cheapComputerData, cheapComputerQuantity);
 
         // Go to Shopping cart Page
         goTo(URL.CART);
-        //orderingComputerFlow.verifyComputerAdded(cheapComputerData, ComputerPriceType.cheapComputerStartPrice);
+        orderingComputerFlow.verifyComputerAdded();
+
 
         // checkout
 //        UserDataObject userDataObject = new UserDataObject();
