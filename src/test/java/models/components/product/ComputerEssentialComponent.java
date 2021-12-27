@@ -11,12 +11,10 @@ import java.util.List;
 public abstract class ComputerEssentialComponent {
 
     private final WebDriver driver;
-
     private final By allOptionsSel = By.cssSelector(".option-list input");
-
     private final By productQtySel = By.cssSelector(".qty-input");
-
     private final By addToCartBtnSel = By.cssSelector("[id^='add-to-cart-button']");
+
     public ComputerEssentialComponent(WebDriver driver) {
         this.driver = driver;
     }
@@ -24,6 +22,7 @@ public abstract class ComputerEssentialComponent {
     public abstract void selectProcessorType(String type);
 
     public abstract void selectRAM(String type);
+
     @Step("Select HDD with value {type}")
     public void selectHDD(String type) {
         selectCompSpecOption(type);
@@ -48,7 +47,7 @@ public abstract class ComputerEssentialComponent {
         }
     }
 
-    public void productQtySel(int qty) {
+    public void selectItemQuantity(int qty) {
         WebElement productQtyElem = driver.findElement(productQtySel);
         productQtyElem.clear();
         productQtyElem.sendKeys(String.valueOf(qty));

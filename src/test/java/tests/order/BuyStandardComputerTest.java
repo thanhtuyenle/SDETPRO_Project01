@@ -6,40 +6,36 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testdata.purchasing.ComputerDataObject;
+import testdata.purchasing.ComputerType;
 import testdata.user.UserDataObject;
 import testdata.url.URL;
 import testflows.order.computer.BuyingComputerFlow;
+import testflows.order.computer.BuyingComputerFlowExtend;
 import testflows.order.computer.ComputerPriceType;
 import tests.BaseTest;
+import utils.data.CommonData;
 import utils.data.ComputerTestDataGenerator;
 
-public class BuildStandardComputerTest extends BaseTest implements ComputerPriceType {
+public class BuyStandardComputerTest extends BaseTest implements ComputerPriceType {
 
     @Test(dataProvider = "standardCompsDataSet", description = "Buying a standard computer")
     @Description(value = "Using a set of utils.data with different computer specs and check total price in cart")
     public void testBuildingStandardComputer(ComputerDataObject computerDataObject) {
         WebDriver driver = getDriver();
-        BuyingComputerFlow<StandardEssentialComponent> orderingComputerFlow = new BuyingComputerFlow<>(driver);
+        BuyingComputerFlowExtend<StandardEssentialComponent> orderingComputerFlow = new BuyingComputerFlowExtend<>(driver);
 
         // Go to cheap computer item page
         goTo(URL.STANDARD_COMP_DETAILS);
         orderingComputerFlow.withComputerEssentialComp(StandardEssentialComponent.class);
-        orderingComputerFlow.buildComputerAndAddToCart(computerDataObject);
+        int quantity = 4;
+        orderingComputerFlow.buildComputerAndAddToCart(ComputerType.STANDARD_COMPUTER, computerDataObject, quantity);
 
         // Go to Shopping cart Page
         goTo(URL.CART);
-        orderingComputerFlow.verifyComputerAdded(computerDataObject, ComputerPriceType.standardComputerStartPrice);
+        orderingComputerFlow.verifyComputerAdded();
+        orderingComputerFlow.agreeAndCheckout();
 
-        UserDataObject userDataObject = new UserDataObject();
-        userDataObject.setFirstName("Tester");
-        userDataObject.setLastName("Lee");
-        userDataObject.setEmail("test@sdet.com");
-        userDataObject.setCountry("United States");
-        userDataObject.setState("Alaska");
-        userDataObject.setCity("Dallas");
-        userDataObject.setAddress1("123 Do Not Send");
-        userDataObject.setZipcode("75000");
-        userDataObject.setPhone("9999999999");
+        UserDataObject userDataObject = CommonData.buildUserDataObject("/src/test/java/testdata/user/DefaultCheckoutUser.json");
         orderingComputerFlow.checkout(userDataObject);
     }
 

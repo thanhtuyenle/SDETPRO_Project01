@@ -13,11 +13,12 @@ import testflows.order.computer.BuyingComputerFlow;
 import testflows.order.computer.BuyingComputerFlowExtend;
 import testflows.order.computer.ComputerPriceType;
 import tests.BaseTest;
+import utils.data.CommonData;
 import utils.data.ComputerTestDataGenerator;
 
 import java.security.SecureRandom;
 
-public class BuildMultipleTypeComputerTest extends BaseTest implements ComputerPriceType{
+public class BuyMultipleTypeComputerTest extends BaseTest implements ComputerPriceType{
     @Test(description = "Buying multiple types of computer")
     @Description(value = "Build 2 computers with different types")
     public void testBuildingCheapComputer() {
@@ -40,14 +41,11 @@ public class BuildMultipleTypeComputerTest extends BaseTest implements ComputerP
         //Get a cheap computer randomly
         ComputerDataObject cheapComputerData = cheapComputerTestData[new SecureRandom().nextInt(cheapComputerTestData.length)];
 
-        // Go to cheap computer item page
+        // Go to standard computer item page
         goTo(URL.STANDARD_COMP_DETAILS);
         orderingComputerFlow.withComputerEssentialComp(StandardEssentialComponent.class);
         int standardComputerQuantity = 3;
         orderingComputerFlow.buildComputerAndAddToCart(ComputerType.STANDARD_COMPUTER, standardComputerData, standardComputerQuantity);
-
-        //goTo(URL.CART);
-        //orderingComputerFlow.verifyComputerAdded(standardComputerData, ComputerPriceType.standardComputerStartPrice);
 
         // Go to cheap computer item page
         goTo(URL.CHEAP_COMP_DETAILS);
@@ -58,19 +56,9 @@ public class BuildMultipleTypeComputerTest extends BaseTest implements ComputerP
         // Go to Shopping cart Page
         goTo(URL.CART);
         orderingComputerFlow.verifyComputerAdded();
+        orderingComputerFlow.agreeAndCheckout();
 
-
-        // checkout
-//        UserDataObject userDataObject = new UserDataObject();
-//        userDataObject.setFirstName("Tester");
-//        userDataObject.setLastName("Lee");
-//        userDataObject.setEmail("test@sdet.com");
-//        userDataObject.setCountry("United States");
-//        userDataObject.setState("Alaska");
-//        userDataObject.setCity("Dallas");
-//        userDataObject.setAddress1("123 Do Not Send");
-//        userDataObject.setZipcode("75000");
-//        userDataObject.setPhone("9999999999");
-//        orderingComputerFlow.checkout(userDataObject);
+        UserDataObject userDataObject = CommonData.buildUserDataObject("/src/test/java/testdata/user/DefaultCheckoutUser.json");
+        orderingComputerFlow.checkout(userDataObject);
     }
 }

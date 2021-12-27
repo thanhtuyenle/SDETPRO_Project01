@@ -27,6 +27,7 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
     private final WebDriver driver;
     private T essentialCompGeneric;
     Map<ComputerType, ComputerOder> allComputerData;
+    private double allSubTotal = 0.0;
 
     public BuyingComputerFlowExtend(WebDriver driver) {
         this.driver = driver;
@@ -57,7 +58,7 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
         essentialCompGeneric.selectHDD(computerDataObject.getHdd());
 
         //set qty
-        essentialCompGeneric.productQtySel(quantity);
+        essentialCompGeneric.selectItemQuantity(quantity);
 
         // Add To cart
         essentialCompGeneric.clickOnAddToCartBtn();
@@ -103,6 +104,11 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
             if(cartItemRowData != null) {
                 ComputerOder computerOder = allComputerData.get(computerType);
                 double orderPrice = calculateItemPrice(computerOder.computerDataObject, startComputerPrice)* computerOder.quantity;
+
+                //Add into total sub-total
+                allSubTotal += orderPrice;
+                System.out.println("All Sub Total: allSubTotal = " + allSubTotal);
+
                 Assert.assertTrue(cartItemRowData.getProductAttributes().contains(ComputerSpec.valueOf(computerOder.computerDataObject.getProcessorType()).value()),
                         "[ERR] Processor Type info is not in item details");
 
@@ -115,6 +121,8 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
                 String productLink = cartItemRowData.getProductEditLink();
                 Assert.assertNotNull(productName, "[ERR] Product name is empty");
                 Assert.assertNotNull(productLink, "[ERR] Product link is empty");
+            } else {
+                Assert.fail("[ERR] the computer " + computerType.getType() + " was not added into the cart");
             }
         });
 
@@ -123,7 +131,10 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
         System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(shipping));
         System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(tax));
         System.out.println(shoppingCartPage.cartFooterComponent().getCartTotalComponent().getPriceMap().get(total));
+    }
 
+    public void agreeAndCheckout() {
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getTermOfServiceSel().click();
         shoppingCartPage.cartFooterComponent().getCartTotalComponent().getCheckoutSel().click();
     }
@@ -134,8 +145,8 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
 
         CheckOutPage checkOutPage = new CheckOutPage(driver);
         BillingAddressComponent billingAddressComponent = checkOutPage.getBillingAddressComponent();
-        billingAddressComponent.firstName().sendKeys(userDataObject.getFirstName());
-        billingAddressComponent.lastName().sendKeys(userDataObject.getLastName());
+        billingAddressComponent.firstName().sendKeys(userDataObject.getFirstname());
+        billingAddressComponent.lastName().sendKeys(userDataObject.getLastname());
         billingAddressComponent.email().sendKeys(userDataObject.getEmail());
         billingAddressComponent.selectCountry(userDataObject.getCountry());
         billingAddressComponent.selectState(userDataObject.getState());
@@ -145,18 +156,8 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
         billingAddressComponent.zipCode().sendKeys(userDataObject.getZipcode());
         billingAddressComponent.continueBtn().click();
 
-        //ShippingAddressComponent shippingAddressComponent = checkOutPage.getShippingAddressComponent();
-//        shippingAddressComponent.firstName().sendKeys(userDataObject.getFirstName());
-//        shippingAddressComponent.lastName().sendKeys(userDataObject.getLastName());
-//        shippingAddressComponent.email().sendKeys(userDataObject.getEmail());
-//        shippingAddressComponent.selectCountry(userDataObject.getCountry());
-//        shippingAddressComponent.selectState(userDataObject.getState());
-//        shippingAddressComponent.city().sendKeys(userDataObject.getCity());
-//        shippingAddressComponent.address1().sendKeys(userDataObject.getAddress1());
-//        shippingAddressComponent.zipCode().sendKeys(userDataObject.getZipcode());
-//        shippingAddressComponent.phoneNumber().sendKeys(userDataObject.getPhone());
         checkOutPage.getShippingAddressComponent().continueBtn().click();
-
+        //checkOutPage.getShippingMethodComponent().nextDayAirOption().click();
         checkOutPage.getShippingMethodComponent().continueBtn().click();
         checkOutPage.getPaymentMethodComponent().continueBtn().click();
         checkOutPage.getPaymentInformationComponent().continueBtn().click();
@@ -167,8 +168,8 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
         String displayBillingName = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().name().getText();
         String displayBillingFirstName = displayBillingName.split("\\s")[0].trim();
         String displayBillingLastName = displayBillingName.split("\\s")[1].trim();
-        Assert.assertEquals(displayBillingFirstName, userDataObject.getFirstName(), "[ERR] ConfirmOrderComponent - First Name is not correct");
-        Assert.assertEquals(displayBillingLastName, userDataObject.getLastName(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
+        Assert.assertEquals(displayBillingFirstName, userDataObject.getFirstname(), "[ERR] ConfirmOrderComponent - First Name is not correct");
+        Assert.assertEquals(displayBillingLastName, userDataObject.getLastname(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
 
         String displayBillingEmail = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().email().getText().replace("Email: ", "");
         String displayBillingPhone = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().phone().getText().replace("Phone: ", "");
@@ -207,8 +208,8 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
         String displayShippingName = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().name().getText();
         String displayShippingFirstName = displayShippingName.split("\\s")[0].trim();
         String displayShippingLastName = displayShippingName.split("\\s")[1].trim();
-        Assert.assertEquals(displayShippingFirstName, userDataObject.getFirstName(), "[ERR] ConfirmOrderComponent - First Name is not correct");
-        Assert.assertEquals(displayShippingLastName, userDataObject.getLastName(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
+        Assert.assertEquals(displayShippingFirstName, userDataObject.getFirstname(), "[ERR] ConfirmOrderComponent - First Name is not correct");
+        Assert.assertEquals(displayShippingLastName, userDataObject.getLastname(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
 
         String displayShippingEmail = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().email().getText().replace("Email: ", "");
         String displayShippingPhone = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().phone().getText().replace("Phone: ", "");
@@ -245,23 +246,28 @@ public class BuyingComputerFlowExtend<T extends ComputerEssentialComponent> impl
 
         //TODO : need to add verification points
         List<CartComponent.CartItemRowData> cartItemRowDataList = checkOutPage.getConfirmOrderComponent().getSummaryCartComponent().cartItemRowDataList();
-        Double sumSubTotalPrice = 0.0;
-        Double itemSubTotalPrice = 0.0;
         for(CartComponent.CartItemRowData cartItemDataReturn: cartItemRowDataList) {
             System.out.println(cartItemDataReturn.getImgSrc());
             System.out.println(cartItemDataReturn.getPrice());
-            itemSubTotalPrice += cartItemDataReturn.getSubTotal();
+            System.out.println(cartItemDataReturn.getSubTotal());
             Assert.assertNotNull(cartItemDataReturn.getImgSrc());
         }
 
         Map<String, Double> priceMap = checkOutPage.getConfirmOrderComponent().getCartFooterComponent().getCartTotalComponent().getPriceMap();
         System.out.println(">>>>>>>>>>>>> CartFooterComponent: ");
-        Double displayTotal = 0.0;
+        double otherFees = 0.0;
+        double total = 0.0;
         for(String key: priceMap.keySet()) {
             System.out.println( key + ": " + priceMap.get(key));
-            if(key.contains("Sub-Total"))
-                Assert.assertEquals(itemSubTotalPrice, priceMap.get(key), "Sub-Total is not expected");
+           if(!key.equalsIgnoreCase("Sub-Total") && !key.equalsIgnoreCase("Total")) {
+                otherFees += priceMap.get(key);
+            }
+            if(key.equalsIgnoreCase("Total")) {
+                total = priceMap.get(key);
+            }
         }
+        //Verify Total = Sub Total + Other Fees
+        Assert.assertEquals(total, allSubTotal + otherFees, "[ERR]: Total is not correct");
         System.out.println("<<<<<<<<<<<<<<<");
         //Confirm Order
         checkOutPage.getConfirmOrderComponent().confirmBtn().click();

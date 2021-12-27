@@ -104,8 +104,8 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
 
         CheckOutPage checkOutPage = new CheckOutPage(driver);
         BillingAddressComponent billingAddressComponent = checkOutPage.getBillingAddressComponent();
-        billingAddressComponent.firstName().sendKeys(userDataObject.getFirstName());
-        billingAddressComponent.lastName().sendKeys(userDataObject.getLastName());
+        billingAddressComponent.firstName().sendKeys(userDataObject.getFirstname());
+        billingAddressComponent.lastName().sendKeys(userDataObject.getLastname());
         billingAddressComponent.email().sendKeys(userDataObject.getEmail());
         billingAddressComponent.selectCountry(userDataObject.getCountry());
         billingAddressComponent.selectState(userDataObject.getState());
@@ -137,8 +137,8 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
         String displayBillingName = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().name().getText();
         String displayBillingFirstName = displayBillingName.split("\\s")[0].trim();
         String displayBillingLastName = displayBillingName.split("\\s")[1].trim();
-        Assert.assertEquals(displayBillingFirstName, userDataObject.getFirstName(), "[ERR] ConfirmOrderComponent - First Name is not correct");
-        Assert.assertEquals(displayBillingLastName, userDataObject.getLastName(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
+        Assert.assertEquals(displayBillingFirstName, userDataObject.getFirstname(), "[ERR] ConfirmOrderComponent - First Name is not correct");
+        Assert.assertEquals(displayBillingLastName, userDataObject.getLastname(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
 
         String displayBillingEmail = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().email().getText().replace("Email: ", "");
         String displayBillingPhone = checkOutPage.getConfirmOrderComponent().getBillingAddressComponent().phone().getText().replace("Phone: ", "");
@@ -177,8 +177,8 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> implements
         String displayShippingName = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().name().getText();
         String displayShippingFirstName = displayShippingName.split("\\s")[0].trim();
         String displayShippingLastName = displayShippingName.split("\\s")[1].trim();
-        Assert.assertEquals(displayShippingFirstName, userDataObject.getFirstName(), "[ERR] ConfirmOrderComponent - First Name is not correct");
-        Assert.assertEquals(displayShippingLastName, userDataObject.getLastName(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
+        Assert.assertEquals(displayShippingFirstName, userDataObject.getFirstname(), "[ERR] ConfirmOrderComponent - First Name is not correct");
+        Assert.assertEquals(displayShippingLastName, userDataObject.getLastname(), "[ERR] ConfirmOrderComponent - Last Name is not correct");
 
         String displayShippingEmail = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().email().getText().replace("Email: ", "");
         String displayShippingPhone = checkOutPage.getConfirmOrderComponent().getShippingAddressComponent().phone().getText().replace("Phone: ", "");
