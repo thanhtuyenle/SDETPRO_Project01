@@ -3,6 +3,7 @@ package models.components.global;
 import models.components.global.footer.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class FooterComponent {
 
@@ -13,9 +14,11 @@ public class FooterComponent {
     private MenuFollowUsComponent menuFollowUsComponent;
     private PoweredByComponent poweredByComponent;
     private final By disclaimerTextSel = By.cssSelector(".footer-disclaimer");
+    private WebElement component;
 
     public FooterComponent(WebDriver driver) {
         this.driver = driver;
+        this.component = driver.findElement(By.cssSelector(".footer"));
     }
 
     public MenuInformationComponent menuInformationComponent(){

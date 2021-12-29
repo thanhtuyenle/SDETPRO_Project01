@@ -1,12 +1,17 @@
 package models.components.global.footer;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MenuCustomerServiceComponent {
+import java.awt.*;
 
-    private final WebDriver driver;
-
+public class MenuCustomerServiceComponent extends MenuColumnComponent {
     public MenuCustomerServiceComponent(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+    }
+
+    @Override
+    public By componentSel() {
+        return By.cssSelector(".customer-service");
     }
 }

@@ -8,4 +8,9 @@
             <class name="tests.order.BuyMultipleTypeComputerTest"/>
         </classes>
     </test>
+    <test name="Global UI" parallel="classes" thread-count="4">
+        <classes>
+            <class name="tests.pages.HomePage"/>
+        </classes>
+    </test>
 </suite>

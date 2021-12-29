@@ -1,12 +1,16 @@
 package models.components.global.footer;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MenuMyAccountComponent {
+import java.awt.*;
 
-    private final WebDriver driver;
-
+public class MenuMyAccountComponent extends MenuColumnComponent {
     public MenuMyAccountComponent(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+    }
+    @Override
+    public By componentSel() {
+        return By.cssSelector(".my-account");
     }
 }
