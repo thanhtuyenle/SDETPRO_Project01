@@ -12,6 +12,7 @@
         <classes>
             <class name="tests.pages.HomePage"/>
             <class name="tests.pages.CategoryPage"/>
+            <class name="tests.pages.ShoppingCartPage"/>
         </classes>
     </test>
 </suite>
