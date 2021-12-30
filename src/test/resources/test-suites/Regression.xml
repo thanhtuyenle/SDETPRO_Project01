@@ -11,6 +11,7 @@
     <test name="Global UI" parallel="classes" thread-count="4">
         <classes>
             <class name="tests.pages.HomePage"/>
+            <class name="tests.pages.CategoryPage"/>
         </classes>
     </test>
 </suite>
