@@ -2,6 +2,7 @@
 
 <suite name="Regression" parallel="classes" thread-count="2">
     <test name="Computer Order flows">
+        <parameter name="" value=""></parameter>
         <classes>
             <class name="tests.order.BuyCheapComputerTest"/>
             <class name="tests.order.BuyStandardComputerTest"/>
