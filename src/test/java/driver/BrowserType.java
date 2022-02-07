@@ -1,10 +1,10 @@
 package driver;
 
 public enum BrowserType {
-    chrome("chrome"),
-    firefox("firefox"),
-    safari("safari"),
-    edge("edge");
+    chrome("Chrome"),
+    firefox("Firefox"),
+    safari("Safari"),
+    edge("Edge");
     private final String name;
 
     BrowserType(String name) {
