@@ -12,6 +12,7 @@ This project does not contain fully source code. It's just skeleton with some st
 
 ```
 mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/test-suites/Regression.xml -DbaseUrl=http://demowebshop.tricentis.com
+mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/test-suites/Regression.xml -DbaseUrl=http://demowebshop.tricentis.com -Dbrowser=firefox -DseleniumHub=http://localhost:4444
 ```
 
 Then make sure you can report reports:
@@ -19,3 +20,12 @@ Then make sure you can report reports:
 allure generate --clean
 allure open
 ```"# demo-project-skeleton" 
+
+````
+````how to start jenkins
+goto folder contains .war
+cd Desktop/Testing/Tools/
+java -jar jenkins.war
+
+
+````

@@ -7,9 +7,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import testdata.url.URL;
 
 import java.io.File;
@@ -24,8 +22,24 @@ public class BaseTest {
     private final static List<DriverFactory> webDriverThreadPool = Collections.synchronizedList(new ArrayList<>());
     private static ThreadLocal<DriverFactory> driverThread;
 
-    @BeforeSuite(alwaysRun = true)
-    public static void instantiateDriverObject() {
+//    @BeforeSuite(alwaysRun = true)
+//    public static void instantiateDriverObject() {
+//        driverThread = ThreadLocal.withInitial(() -> {
+//            DriverFactory webDriverThread = new DriverFactory();
+//            webDriverThreadPool.add(webDriverThread);
+//            return webDriverThread;
+//        });
+//    }
+//
+//    @AfterSuite(alwaysRun = true)
+//    public static void clearCookies() {
+//        for (DriverFactory webDriverThread : webDriverThreadPool) {
+//            webDriverThread.quitDriver();
+//        }
+//    }
+
+    @BeforeClass(alwaysRun = true)
+    public  void instantiateDriverObject() {
         driverThread = ThreadLocal.withInitial(() -> {
             DriverFactory webDriverThread = new DriverFactory();
             webDriverThreadPool.add(webDriverThread);
@@ -33,18 +47,16 @@ public class BaseTest {
         });
     }
 
-    @AfterSuite(alwaysRun = true)
-    public static void clearCookies() {
-        for (DriverFactory webDriverThread : webDriverThreadPool) {
-            webDriverThread.quitDriver();
-        }
+    @AfterClass(alwaysRun = true)
+    public void afterClass() {
+        driverThread.get().quitDriver();
     }
 
-    public static WebDriver getDriver() {
+    public WebDriver getDriver() {
         return driverThread.get().getDriver();
     }
 
-    public static WebDriver getDriver(String browserName){
+    public WebDriver getDriver(String browserName){
         return driverThread.get().getDriver(browserName);
     }
 

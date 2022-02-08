@@ -13,8 +13,8 @@ public class DriverFactory {
 
     public WebDriver getDriver() {
         if (webDriver == null) {
-            //webDriver = Driver.getChromeDriver();
-            webDriver = createWebDriver();
+            webDriver = Driver.getChromeDriver(); //use this line to run locally
+            //webDriver = createWebDriver(); //use this line to run jenkins
         }
         return webDriver;
     }
