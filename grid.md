@@ -29,10 +29,16 @@ java -jar -Dwebdriver.gecko.driver=/Users/tuhuynh/SOURCE_CODE/maven-start-projec
 ```
 
 NOTE: on Windows need to specify extension like gecko.exe, chrome.exe
+``
+to start jenkins:
+cd to folder containing jenkins.war
+run command: java -jar jenkins.war
+go to: http://localhost:8080/
+``
 
 ```note for myself - to start a hub
 java -jar /Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/selenium-server-standalone-3.141.59.jar -role hub
+register nodes:
 java -jar -Dwebdriver.gecko.driver=/Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/geckodriver -Dwebdriver.chrome.driver=//Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/chromedriver /Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/selenium-server-standalone-3.141.59.jar -role node -nodeConfig /Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/node_config.json
-
-
 ```
+

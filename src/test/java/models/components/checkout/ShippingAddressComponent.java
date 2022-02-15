@@ -22,7 +22,7 @@ public class ShippingAddressComponent {
     private final WebElement shippingAddressComp;
     public ShippingAddressComponent(WebDriver driver) {
         this.driver = driver;
-        shippingAddressComp = driver.findElement(By.id("checkout-step-shipping"));
+        shippingAddressComp = driver.findElement(By.cssSelector("#checkout-step-shipping"));
     }
 
     public WebElement firstName() {

@@ -22,6 +22,7 @@ public class HeaderMenuComponent {
 
     public void waitUntilCategoryPageLoad(String categoryName) {
         WebDriverWait wait = new WebDriverWait(driver, 15);
+
         wait.until(ExpectedConditions.urlContains(
                 categoryName.toLowerCase().replaceAll(" ","-").replace("&", "-")));
     }
