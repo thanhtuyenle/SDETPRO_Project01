@@ -40,5 +40,7 @@ go to: http://localhost:8080/
 java -jar /Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/selenium-server-standalone-3.141.59.jar -role hub
 register nodes:
 java -jar -Dwebdriver.gecko.driver=/Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/geckodriver -Dwebdriver.chrome.driver=//Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/chromedriver /Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/selenium-server-standalone-3.141.59.jar -role node -nodeConfig /Users/tuyentle/Desktop/Testing/Project01/task01/SDETPRO_Project01/selenium-grid/node_config.json
+then go to 
+http://localhost:4444/grid/console
 ```
 
